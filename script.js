@@ -1,26 +1,18 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+// Smooth scroll to anchors (if not using native 'scroll-behavior')
+document.querySelectorAll('nav a').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetID = this.getAttribute('href').substring(1);
+    const targetElement = document.getElementById(targetID);
+    targetElement.scrollIntoView({
+      behavior: 'smooth'
     });
+  });
 });
 
-//  Optional:  Simple scroll-to-top button
-const footer = document.querySelector('footer');
-const scrollButton = document.createElement('button');
-scrollButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
-scrollButton.classList.add('scroll-to-top');
-scrollButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// Placeholder for contact form submission
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  alert('Thank you for reaching out! I will get back to you shortly.');
+  this.reset();
 });
-document.body.appendChild(scrollButton);
-
-//  Show button after scrolling a bit
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        scrollButton.classList.add('show');
-    }
