@@ -1,18 +1,20 @@
-// Smooth scroll to anchors (if not using native 'scroll-behavior')
 document.querySelectorAll('nav a').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const targetID = this.getAttribute('href').substring(1);
-    const targetElement = document.getElementById(targetID);
-    targetElement.scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
 
-// Placeholder for contact form submission
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  alert('Thank you for reaching out! I will get back to you shortly.');
-  this.reset();
+        // This checks if the link is an internal page link (starts with '#')
+        if (href.startsWith('#')) {
+            // If it is, prevent the default jump and scroll smoothly
+            e.preventDefault();
+            const targetID = href.substring(1);
+            const targetElement = document.getElementById(targetID);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
+        // If the href does not start with '#', like 'Resume.pdf', 
+        // the script does nothing, and the browser performs the default action (opens the link).
+    });
 });
