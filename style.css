@@ -14,7 +14,7 @@ body {
     line-height: 1.6;
     background: #f9f9f9;
     color: #333;
-    padding-top: 60px;
+    padding-top: 60px; /* Space for fixed navbar */
 }
 
 /* Navbar */
@@ -48,14 +48,21 @@ nav ul li a:hover {
     color: #ffa500;
 }
 
-/* Section Layouts */
+/* Section Layouts - CHANGED FOR SPACING */
 section {
-    padding: 60px 20px;
     max-width: 1000px;
-    margin: auto;
+    margin: 0 auto 30px auto; /* Further reduced bottom margin */
+    padding: 0 20px; /* Horizontal padding only */
 }
 
-h1, h2 {
+/* ADDED to remove space after last section */
+section:last-of-type {
+    margin-bottom: 0;
+}
+
+
+h1,
+h2 {
     margin-bottom: 20px;
     color: #444;
 }
@@ -70,11 +77,13 @@ p {
     background: #1e1e2f;
     color: white;
     padding: 100px 20px;
+    /* The 'section' rule above now handles the bottom margin */
 }
 
 #home h1 {
     font-size: 2.5em;
-    color: #f0f0f0; /* Light color for the name */
+    color: #f0f0f0;
+    /* Light color for the name */
 }
 
 #home p {
@@ -91,14 +100,49 @@ p {
     background-color: #ffa500;
     color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #home button:hover {
     background-color: #e59400;
+    transform: scale(1.05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Skills */
+#skills h2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #444;
+    justify-content: space-between;
+    /* Distributes space evenly */
+}
+
+.expertise-legend {
+    display: flex;
+    align-items: center;
+    /* margin-left: 15px; */
+    /* Space between "Skills" and the legend */
+    font-size: 0.85em;
+    /* Smaller font size for the legend */
+    color: #555;
+    /* justify-content: flex-end; */
+}
+
+.expertise-line {
+    width: 20px;
+    /* Width of the colored line */
+    height: 8px;
+    /* Height of the colored line */
+    background-color: #ffa500;
+    /* Match the progress bar color */
+    margin-right: 5px;
+    /* Space between the line and the text */
+    border-radius: 4px;
+    /* Match the progress bar radius */
+}
+
 .skills-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -110,11 +154,38 @@ p {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skill-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #ffa500;
+    border-radius: 4px;
+    width: 0%;
+    animation: fill-progress 1s forwards ease-in-out;
+}
+
+@keyframes fill-progress {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: var(--progress-width);
+    }
 }
 
 /* Projects */
@@ -132,7 +203,8 @@ p {
     margin: auto;
 }
 
-#contact input, #contact textarea {
+#contact input,
+#contact textarea {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
@@ -162,33 +234,16 @@ footer {
     background: #333;
     color: white;
 }
+
+/* Contact - CHANGED FOR SPACING */
 #contact {
     text-align: center;
-    padding: 60px 20px;
-    background-color: #f0f0f0; /* Light background for contrast */
+    padding: 60px 20px; /* Keep its original padding */
+    background-color: #f0f0f0;
+    margin-bottom: 0; /* Override the default section margin so there's no space before footer */
 }
 
 #contact h2 {
     color: #333;
-    margin-bottom: 30px;
-}
-
-#contact p {
-    margin: 15px 0;
-    font-size: 1.1em;
-}
-
-#contact a {
-    color: #ffa500; /* Use your website's accent color */
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-#contact a:hover {
-    color: #e59400;
-}
-
-#contact i {
-    margin-right: 10px;
-    color: #555; /* Icon color */
+    margin
 }
